@@ -1,14 +1,55 @@
 <template>
-  <div></div>
+  <div>
+    <p class="title">推荐歌单</p>
+    <van-row gutter="5">
+      <van-col span="8" v-for="item in list" :key="item.id">
+        <van-image width="100" height="100" :src="item.picUrl" />
+        <p class="song_name">{{ item.name }}</p>
+      </van-col>
+    </van-row>
+    <p class="title">最新音乐</p>
+    <van-cell :title="item.name" :label="item.song.artists[0].name" v-for="item in newSongList" :key="item.id">
+      <template #right-icon>
+        <van-icon name="play-circle-o" size="0.6rem" />
+      </template>
+    </van-cell>
+  </div>
 </template>
 
 <script>
+import { recommendSongListApi, newSongApi } from "@/api";
 export default {
-name: 'AA',
-}
+  name: "MusicDemoIndex",
+  data() {
+    return {
+      list: [],
+      newSongList:[]
+    };
+  },
+  methods: {
+    getRecommendSongList() {
+      recommendSongListApi({
+        limit: 6,
+      }).then((res) => {
+        console.log(res), (this.list = res.data.result);
+      });
+    },
+    getNewSongApi() {
+      newSongApi().then((res) => {
+        console.log(res);
+        this.newSongList = res.data.result
+
+      });
+    },
+  },
+  mounted() {
+    this.getRecommendSongList();
+    this.getNewSongApi();
+  },
+};
 </script>
 
-<style>
+<style scoped>
 /* 标题 */
 .title {
   padding: 0.266667rem 0.24rem;
