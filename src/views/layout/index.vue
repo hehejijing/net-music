@@ -1,12 +1,12 @@
 <template>
   <div>
     <van-nav-bar :title="$route.meta.title" />
-    <div style="margin-bottom: 48px"><router-view></router-view></div>
-    <van-tabbar>
-      <van-tabbar-item icon="home-o" @click="btn('/layout/home')"
+    <div style="margin-bottom: 40px"><router-view></router-view></div>
+    <van-tabbar route>
+      <van-tabbar-item icon="home-o" to='/layout/home'
         >主页</van-tabbar-item
       >
-      <van-tabbar-item icon="search" @click="btn('/layout/search')"
+      <van-tabbar-item icon="search" to='/layout/search'
         >搜索</van-tabbar-item
       >
     </van-tabbar>
@@ -17,11 +17,7 @@
 export default {
   name: "AA",
   methods: {
-    btn(a) {
-      this.$router.push({
-        path: a,
-      });
-    },
+    
   },
 };
 </script>

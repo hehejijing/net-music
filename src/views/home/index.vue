@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="title">推荐歌单</p>
-    <van-row gutter="5">
+    <van-row gutter="10">
       <van-col span="8" v-for="item in list" :key="item.id">
         <van-image width="100" height="100" :src="item.picUrl" />
         <p class="song_name">{{ item.name }}</p>
@@ -10,7 +10,7 @@
     <p class="title">最新音乐</p>
     <van-cell :title="item.name" :label="item.song.artists[0].name" v-for="item in newSongList" :key="item.id">
       <template #right-icon>
-        <van-icon name="play-circle-o" size="0.6rem" />
+        <van-icon name="play-circle-o" size="0.6rem" @click="play(item.id)"/>
       </template>
     </van-cell>
   </div>
@@ -41,6 +41,14 @@ export default {
 
       });
     },
+    play(id) {
+      this.$router.push({
+      path:'/play',
+      query :{
+        id:id
+      }
+    })
+    }
   },
   mounted() {
     this.getRecommendSongList();

@@ -15,10 +15,10 @@ import Play from "@/views/Play";
 
 
 
-const VueRouterPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push(to) {
-  return VueRouterPush.call(this,to).catch(err=>err)
-}
+// const VueRouterPush = VueRouter.prototype.push
+// VueRouter.prototype.push = function push(to) {
+//   return VueRouterPush.call(this,to).catch(err=>err)
+// }
 
 
 //创建规则
